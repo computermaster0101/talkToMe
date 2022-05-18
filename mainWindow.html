@@ -2,18 +2,34 @@
 <html lang="en">
 <head>
   <title>talkToMe</title>
-  <!--
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  -->
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  
 </head>
 <body>
   <h1 align="center">talkToMe</h1>
+  <div align="center">
+	<i class="fa fa-microphone fa-5x" style="color: #0099CC" onclick="toggle(this)"></i>
+  </div>
   
   <script>
+    var on = false;
+
 	function example(){
 	  window.electron.example()
     }
+
+	function toggle(element){
+		if(on){
+			on = false
+			element.setAttribute("style","color: #0099CC")
+		} else {
+			on = true
+			element.setAttribute("style","color: red")
+		}
+	}
 	
+
   </script>
 </body>
 </html>
