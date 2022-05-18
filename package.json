@@ -1,0 +1,14 @@
+{
+  "name": "talktome",
+  "version": "1.0.0",
+  "description": "speech to text utility",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron main.js"
+  },
+  "author": "Michael Herber II",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^18.2.0"
+  }
+}
