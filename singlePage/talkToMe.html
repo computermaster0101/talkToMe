@@ -28,12 +28,12 @@
 		.microphoneContainer  .microphone{
 			font-size: 50px;
 			text-align: center;
-			margin-top: 40%;
+			margin-top: 30%;
 		}
 
 		.contentText{
 			padding: 20px;
-			margin-top: 30%;
+			margin-top: 5%;
 		}
 
 		.demo{
@@ -45,7 +45,7 @@
 			position: absolute;
 			content: '';
 			width: 2px;
-			height: 30px;
+			height: 20px;
 			background: black;
 			margin-left: 5px;
 			animation: blink 1s infinite;
@@ -84,15 +84,15 @@
         </div>
 
         <div class="contentText">
+			<div id="text"></div>
             <p class="demo"></p>
         </div>
     </div>
-
     <div class="mobileSpeachtotextContainer"></div>
     
-
     <script>
 		var on = false;
+		var lastFinal = "";
 		const content = document.querySelector(".demo")
 		const speechRecognition = window.speechRecognition || window.webkitSpeechRecognition;
 		const recognition = new speechRecognition();
@@ -108,11 +108,22 @@
 		recognition.onresult = function(event){
 			const current = event.resultIndex;
 			const transcript = event.results[current][0].transcript
-			content.textContent = transcript;
+			contentDiv = document.getElementById("text")
+			content.textContent = transcript
+			if(event.results[current].isFinal){
+				if(transcript !== lastFinal){
+					content.textContent = ""
+					lastFinal = transcript
+					addThis = document.createElement('p')
+					addThis.textContent = transcript;
+					contentDiv.appendChild(addThis)
+				}
+			}
 		}
 
 		function toggle(){
 			element = document.getElementById("clickable")
+			contentDiv = document.getElementById("contentText")
 			if(on){
 				on = false
 				element.setAttribute("style","color: #0099CC")
