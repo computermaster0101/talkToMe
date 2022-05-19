@@ -16,7 +16,7 @@
     <div class="speachtotextContainer">
         <div class="microphoneContainer">
             <div class="microphone">
-				<i class="fa fa-microphone fa-5x" style="color: #0099CC" onclick="toggle(this)"></i>
+				<i class="fa fa-microphone fa-5x" id="clickable" style="color: #0099CC" onclick="toggle()"></i>
             </div>
         </div>
 
@@ -28,25 +28,38 @@
     <div class="mobileSpeachtotextContainer"></div>
     
 
-    <script src="stt.js"></script>
-	<script>
-    var on = false;
-
-	function example(){
-	  window.electron.example()
-    }
-
-	function toggle(element){
-		if(on){
-			on = false
-			element.setAttribute("style","color: #0099CC")
-		} else {
-			on = true
-			element.setAttribute("style","color: red")
+    <script>
+		const record = document.querySelector(".microphone");
+		const content = document.querySelector(".demo")
+		const speechRecognition = window.speechRecognition || window.webkitSpeechRecognition;
+		const recognition = new speechRecognition();
+		recognition.interimResults = true;
+		recognition.onstart = function(){
+			console.log("voice is activated")
 		}
-	}
-	
+		
+		recognition.onresult = function(event){
+			const current = event.resultIndex;
+			const transcript = event.results[current][0].transcript
+			content.textContent = transcript;
+			toggle()
+		}
 
-  </script>
+		var on = false;
+		function example(){
+			window.electron.example()
+		}
+		function toggle(){
+			element = document.getElementById("clickable")
+			if(on){
+				on = false
+				element.setAttribute("style","color: #0099CC")
+			} else {
+				on = true
+				element.setAttribute("style","color: red")
+				recognition.start();
+			}
+		}
+	</script>
 </body>
 </html>
