@@ -1,18 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>talkToMe</title>
-  
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap" rel="stylesheet">
+    <title>Speech to text</title>
 </head>
 <body>
-  <h1 align="center">talkToMe</h1>
-  <div align="center">
-	<i class="fa fa-microphone fa-5x" style="color: #0099CC" onclick="toggle(this)"></i>
-  </div>
-  
-  <script>
+
+    <div class="speachtotextContainer">
+        <div class="microphoneContainer">
+            <div class="microphone">
+				<i class="fa fa-microphone fa-5x" style="color: #0099CC" onclick="toggle(this)"></i>
+            </div>
+        </div>
+
+        <div class="contentText">
+            <p class="demo"></p>
+        </div>
+    </div>
+
+    <div class="mobileSpeachtotextContainer"></div>
+    
+
+    <script src="stt.js"></script>
+	<script>
     var on = false;
 
 	function example(){
