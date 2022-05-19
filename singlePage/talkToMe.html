@@ -91,6 +91,7 @@
     <div class="mobileSpeachtotextContainer"></div>
     
     <script>
+		var restart = true
 		var on = false;
 		var lastFinal = "";
 		const content = document.querySelector(".demo")
@@ -120,7 +121,12 @@
 				}
 			}
 		}
-
+		recognition.onerror = function(event){
+			console.log('Speech recognition error detected: ' + event.error)
+			recognition.stop()
+			if(restart){toggle()}
+		}
+		
 		function toggle(){
 			element = document.getElementById("clickable")
 			contentDiv = document.getElementById("contentText")
@@ -128,6 +134,7 @@
 				on = false
 				element.setAttribute("style","color: #0099CC")
 				recognition.stop()
+				//if(restart){toggle()}
 			} else {
 				on = true
 				element.setAttribute("style","color: red")
